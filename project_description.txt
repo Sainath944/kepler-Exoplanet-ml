@@ -1,0 +1,75 @@
+Exoplanet Classification Project
+==============================
+
+Project Overview:
+----------------
+This project focuses on binary classification of exoplanets using machine learning techniques. The goal is to classify exoplanets as either confirmed exoplanets or false positives based on various astronomical measurements and observations.
+
+Data Source:
+-----------
+The data comes from NASA's Kepler Space Telescope mission (2009-2019). While Kepler's mission has ended and real-time updates are no longer possible, this historical dataset remains one of the most comprehensive collections of exoplanet observations. As my first machine learning project, I chose this dataset to learn and implement various data preprocessing techniques and machine learning models.
+
+Data Processing Pipeline:
+-----------------------
+1. Data Acquisition
+   - Direct download from NASA's Kepler API
+   - Raw, unfiltered dataset containing all Kepler observations
+   - Regular updates possible through API integration
+
+2. Data Loading and Initial Analysis
+   - Data is loaded from NASA's Kepler dataset
+   - Initial data exploration includes checking data info, descriptions, and missing values
+   - The dataset contains various features about potential exoplanets and their host stars
+
+3. Data Preprocessing Steps:
+   - Removal of 'CANDIDATE' dispositions to focus on binary classification
+   - Dropping unnecessary columns (koi_name, false_positive_type, etc.)
+   - Handling missing values:
+     * Numeric columns: Filled using mean strategy
+     * Categorical columns: Filled using most frequent value
+   - Feature standardization using StandardScaler
+   - Label encoding of target variable (disposition):
+     * Confirmed = 0
+     * False Positive = 1
+
+4. Feature Selection:
+   - Key features include:
+     * Planet characteristics (radius, period, temperature)
+     * Star characteristics (temperature, radius, mass)
+     * Orbital parameters
+     * Various astronomical measurements
+
+Machine Learning Implementation:
+-----------------------------
+The project implements multiple classification algorithms:
+1. Random Forest Classifier
+2. Logistic Regression
+3. AdaBoost Classifier
+4. XGBoost Classifier
+5. K-Nearest Neighbors
+
+Each model:
+- Trains on 80% of the data (train_test_split with test_size=0.2)
+- Evaluates performance using:
+  * Confusion Matrix
+  * Classification Report (Precision, Recall, F1-Score)
+  * ROC-AUC Score
+
+File Structure:
+-------------
+1. data_preprocessing.py:
+   - Handles all data cleaning and preparation
+   - Saves processed data to CSV
+
+2. binary_classification.py:
+   - Contains implementation of all machine learning models
+   - Includes model training and evaluation
+
+Performance and Results:
+---------------------
+- Models achieve varying degrees of accuracy
+- StandardScaler implementation shows minimal improvement (≈0.01)
+- ROC-AUC scores are used to evaluate model performance
+- Results are visualized using confusion matrices
+
+This project demonstrates a complete machine learning pipeline from data preprocessing to model evaluation in the context of astronomical data analysis, specifically for exoplanet classification.
